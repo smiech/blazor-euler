@@ -1,0 +1,71 @@
+﻿@page "/"
+@using Data;
+@using ProjectEuler.Solutions
+@inject ProblemService problemService
+
+<h3>Welcom everabady</h3>
+@if (problemModels == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Solved</th>
+                <th>Answer</th>
+                <th>Time</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var problemModel in problemModels)
+            {
+                var problem = problemModel.Problem;
+            <tr>
+                <td>@problem.Title</td>
+                <td>@problem.Description</td>
+                <td>@problemModel.IsSolved.</td>
+                @if (!problemModel.ShownSolution)
+                {
+                    if (@problemModel.IsSolved)
+                    {
+                        <td><button @onclick="()=> ShowSolution(problemModel)">Show solution</button></td>
+                    }
+                    else
+                    {
+                        <td>No solution available</td>
+                    }
+                }
+                else
+                {
+                    <td>Elapsed in: @problemModel.Solution.ElapsedMiliseconds : @problemModel.Solution.GetAnswer()</td>
+                }
+
+            </tr>
+            }
+        </tbody>
+    </table>
+}
+@code {
+
+        private async void ShowSolution(ProblemModel model)
+        {
+
+            model.ShownSolution = true;
+            var solution = await problemService.GetBenchmarkedSolutionAsync(model.Problem);
+            model.Solution = solution;
+        }
+    private IList<ProblemModel> problemModels;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var problems = await problemService.GetProblemsAsync();
+        problemModels = problems
+            .Select(x => new ProblemModel(x, problemService.HasSolution(x)))
+            .ToList();
+
+    }
+}

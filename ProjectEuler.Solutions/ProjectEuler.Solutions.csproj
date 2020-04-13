@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <RootNamespace>ProjectEuler.Solutions</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Runtime.Loader" Version="4.3.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ProjectEuler.ProblemBase\ProjectEuler.ProblemBase.csproj" />
+    <ProjectReference Include="..\ProjectEuler.SolutionBase\ProjectEuler.SolutionBase.csproj" />
+  </ItemGroup>
+
+</Project>
