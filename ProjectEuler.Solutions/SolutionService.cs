@@ -35,7 +35,7 @@ What is the largest prime factor of the number 600851475143 ?",3 )
             solutions = SolutionLoader.Load<ISolution>(
                 new string[]
                 {
-                    @"C:\repositories\ProjectEuler.SolutionPlugins"
+                    @"/Users/adam/repositories/project-euler-solutions"
                 });
         }
 
