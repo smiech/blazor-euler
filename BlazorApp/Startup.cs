@@ -29,7 +29,6 @@ namespace BlazorApp
         {
             services.AddRazorPages();
             services.AddServerSideBlazor();
-            services.AddSingleton<WeatherForecastService>();
             services.AddSingleton<SolutionService>();
         }
 

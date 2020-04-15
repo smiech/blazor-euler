@@ -8,4 +8,12 @@
     <ProjectReference Include="..\ProjectEuler.Solutions\ProjectEuler.Solutions.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Remove="Pages\FetchData.razor" />
+    <Content Remove="Pages\Counter.razor" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="Data\WeatherForecastService.cs" />
+    <Compile Remove="Data\WeatherForecast.cs" />
+  </ItemGroup>
 </Project>
