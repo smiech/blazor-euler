@@ -1,15 +1,14 @@
 ﻿@page "/"
 @using Data;
 @using ProjectEuler.Solutions
-@inject ProblemService problemService
+@inject SolutionService problemService
 
 <h3>Welcom everabady</h3>
-@if (problemModels == null)
-{
-    <p><em>Loading...</em></p>
-}
-else
-{
+
+    <input type="number" @bind-value="ProblemsFrom"/>
+<input type="number" @bind-value="ProblemsTo"/>
+
+    <button @onclick="async () => await GetProblemModels(ProblemsFrom,ProblemsTo)">Reload problems</button>
     <table class="table">
         <thead>
             <tr>
@@ -48,24 +47,29 @@ else
             }
         </tbody>
     </table>
-}
 @code {
+    private int ProblemsFrom;
+    private int ProblemsTo;
+    private async void ShowSolution(ProblemModel model)
+    {
 
-        private async void ShowSolution(ProblemModel model)
-        {
-
-            model.ShownSolution = true;
-            var solution = await problemService.GetBenchmarkedSolutionAsync(model.Problem);
-            model.Solution = solution;
-        }
-    private IList<ProblemModel> problemModels;
+        model.ShownSolution = true;
+        var solution = await problemService.GetBenchmarkedSolutionAsync(model.Problem);
+        model.Solution = solution;
+    }
+    private static IList<ProblemModel> problemModels = new List<ProblemModel>();
 
     protected override async Task OnInitializedAsync()
     {
-        var problems = await problemService.GetProblemsAsync();
+
+
+    }
+
+    private async Task GetProblemModels(int from, int to)
+    {
+        var problems = await problemService.GetProblemsAsync(from, to);
         problemModels = problems
             .Select(x => new ProblemModel(x, problemService.HasSolution(x)))
             .ToList();
-
     }
 }

@@ -7,11 +7,15 @@
 
   <ItemGroup>
     <PackageReference Include="System.Runtime.Loader" Version="4.3.0" />
+    <PackageReference Include="HtmlAgilityPack" Version="1.11.23" />
+    <PackageReference Include="HtmlAgilityPack.CssSelectors.NetCore" Version="1.2.1" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ProjectEuler.ProblemBase\ProjectEuler.ProblemBase.csproj" />
     <ProjectReference Include="..\ProjectEuler.SolutionBase\ProjectEuler.SolutionBase.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Data\" />
+  </ItemGroup>
 </Project>
