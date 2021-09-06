@@ -11,6 +11,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using BlazorApp.Data;
 using ProjectEuler.Solutions;
+using Microsoft.Extensions.Logging;
+using Serilog.Extensions.Logging;
 
 namespace BlazorApp
 {
@@ -30,6 +32,9 @@ namespace BlazorApp
             services.AddRazorPages();
             services.AddServerSideBlazor();
             services.AddSingleton<SolutionService>();
+            services.AddApplicationInsightsTelemetry(Configuration);
+
+            //services.AddSingleton<ILoggerFactory>(services => new SerilogLoggerFactory(Log.Logger, false));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
