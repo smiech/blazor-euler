@@ -21,7 +21,7 @@ namespace ProjectEuler.Solutions
                 {
                     Assembly pluginAssembly = LoadPlugin(ptc);
                     return CreateCommands<T>(pluginAssembly);
-                });
+                }).Where(x=>x!= null);
               
             });
         }
@@ -61,10 +61,11 @@ namespace ProjectEuler.Solutions
 
             if (count == 0)
             {
-                string availableTypes = string.Join(",", assembly.GetTypes().Select(t => t.FullName));
-                throw new ApplicationException(
-                    $"Can't find any type which implements ICommand in {assembly} from {assembly.Location}.\n" +
-                    $"Available types: {availableTypes}");
+                yield return null;
+                //string availableTypes = string.Join(",", assembly.GetTypes().Select(t => t.FullName));
+                //throw new ApplicationException(
+                //    $"Can't find any type which implements ICommand in {assembly} from {assembly.Location}.\n" +
+                //    $"Available types: {availableTypes}");
             }
         }
     }

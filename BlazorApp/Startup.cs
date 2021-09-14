@@ -18,9 +18,12 @@ namespace BlazorApp
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        private string _contentRoot;
+
+        public Startup(IConfiguration configuration, IWebHostEnvironment env)
         {
             Configuration = configuration;
+            _contentRoot = env.ContentRootPath;
         }
 
         public IConfiguration Configuration { get; }
@@ -31,7 +34,7 @@ namespace BlazorApp
         {
             services.AddRazorPages();
             services.AddServerSideBlazor();
-            services.AddSingleton<SolutionService>();
+            services.AddSingleton<SolutionService>(new SolutionService(_contentRoot));
             services.AddApplicationInsightsTelemetry(Configuration);
 
             //services.AddSingleton<ILoggerFactory>(services => new SerilogLoggerFactory(Log.Logger, false));
@@ -40,6 +43,7 @@ namespace BlazorApp
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
