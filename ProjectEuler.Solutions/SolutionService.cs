@@ -7,22 +7,20 @@ namespace ProjectEuler.Solutions
 {
     public class SolutionService
     {
-        public SolutionService()
+        public SolutionService(string solutionsPath)
         {
-            LoadSolutions();
+            LoadSolutions(solutionsPath);
         }
 
         private ProblemLoader problemLoader = new ProblemLoader();
         private IEnumerable<ISolution> solutions;
 
-        private List<Problem> problemz = new List<Problem>();
-
-        public void LoadSolutions()
+        public void LoadSolutions(string solutionsPath)
         {
             solutions = SolutionLoader.Load<ISolution>(
                 new string[]
                 {
-                    @"/Users/adam/repositories/project-euler-solutions"
+                    solutionsPath
                 });
         }
 

@@ -1,7 +1,10 @@
 ﻿@page "/"
 @using Data;
 @using ProjectEuler.Solutions
+@using Microsoft.Extensions.Logging
 @inject SolutionService problemService
+@inject ILogger<EulerProblems> logger;
+
 
 <h3>Welcom everabady</h3>
 
@@ -48,8 +51,8 @@
         </tbody>
     </table>
 @code {
-    private int ProblemsFrom;
-    private int ProblemsTo;
+    private int ProblemsFrom = 1;
+    private int ProblemsTo = 10;
     private async void ShowSolution(ProblemModel model)
     {
 
@@ -61,7 +64,8 @@
 
     protected override async Task OnInitializedAsync()
     {
-
+        logger.LogInformation("init");
+        await GetProblemModels(ProblemsFrom, ProblemsTo);
 
     }
 
