@@ -28,6 +28,7 @@
   <ItemGroup>
     <None Remove="Microsoft.ApplicationInsights" />
     <None Remove="Microsoft.ApplicationInsights.AspNetCore" />
+    <None Remove="Solutions\" />
   </ItemGroup>
   <ItemGroup>
     <None Update="ProjectEuler.Solution1.dll">
@@ -36,5 +37,14 @@
     <None Update="ProjectEuler.Solution2.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Update="Solutions\ProjectEuler.Solution1.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Solutions\ProjectEuler.Solution2.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Solutions\" />
   </ItemGroup>
 </Project>

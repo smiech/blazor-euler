@@ -35,7 +35,7 @@ namespace BlazorApp
         {
             services.AddRazorPages();
             services.AddServerSideBlazor();
-            services.AddSingleton<SolutionService>(new SolutionService(_contentRoot));
+            services.AddSingleton<SolutionService>(new SolutionService(_contentRoot+"/Solutions/"));
             services.AddApplicationInsightsTelemetry(Configuration);
 
             //services.AddSingleton<ILoggerFactory>(services => new SerilogLoggerFactory(Log.Logger, false));
